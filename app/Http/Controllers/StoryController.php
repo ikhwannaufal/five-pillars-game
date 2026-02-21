@@ -4,19 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\StoryNode;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class StoryController extends Controller
 {
-    public function index(): JsonResponse
-    {
-        return response()->json(StoryNode::all());
-    }
-
     public function start(): JsonResponse
     {
         $node = StoryNode::orderBy('id')->first();
         if (!$node) {
-            return response()->json(['message' => 'No story nodes found'], 404);
+            return response()->json(['message' => 'Story node not found'], 404);
         }
         return response()->json($node);
     }
@@ -25,7 +21,23 @@ class StoryController extends Controller
     {
         $node = StoryNode::find($id);
         if (!$node) {
-            return response()->json(['message' => 'Node not found'], 404);
+            return response()->json(['message' => 'Story node not found'], 404);
+        }
+        return response()->json($node);
+    }
+
+    public function next(Request $request): JsonResponse
+    {
+        $nextId = $request->input('next_id');
+        if ($nextId === null) {
+            return response()->json([
+                'ending' => true,
+                'message' => 'End of story',
+            ]);
+        }
+        $node = StoryNode::find($nextId);
+        if (!$node) {
+            return response()->json(['message' => 'Story node not found'], 404);
         }
         return response()->json($node);
     }
