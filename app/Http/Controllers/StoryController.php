@@ -17,9 +17,12 @@ class StoryController extends Controller
         return response()->json($node);
     }
 
-    public function show(int $id): JsonResponse
+    public function show(string|int $id): JsonResponse
     {
-        $node = StoryNode::find($id);
+        if (!is_numeric($id)) {
+            return response()->json(['message' => 'Story node not found'], 404);
+        }
+        $node = StoryNode::find((int) $id);
         if (!$node) {
             return response()->json(['message' => 'Story node not found'], 404);
         }
