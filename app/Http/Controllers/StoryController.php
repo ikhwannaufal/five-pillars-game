@@ -12,6 +12,7 @@ class StoryController extends Controller
 {
     #[OA\Get(
         path: '/api/story/start',
+        operationId: 'getStoryStart',
         summary: 'Get first story node',
         tags: ['story'],
         responses: [
@@ -30,6 +31,7 @@ class StoryController extends Controller
 
     #[OA\Get(
         path: '/api/story/{id}',
+        operationId: 'getStoryNode',
         summary: 'Get story node by id',
         tags: ['story'],
         parameters: [
@@ -54,6 +56,7 @@ class StoryController extends Controller
 
     #[OA\Post(
         path: '/api/story/next',
+        operationId: 'getNextStoryNode',
         summary: 'Get next story node by choice',
         tags: ['story'],
         requestBody: new OA\RequestBody(

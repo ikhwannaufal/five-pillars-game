@@ -12,7 +12,7 @@
                     "story"
                 ],
                 "summary": "Get first story node",
-                "operationId": "e21e4c250b1bb6130a2b5366c5884b86",
+                "operationId": "getStoryStart",
                 "responses": {
                     "200": {
                         "description": "First story node (id, text, choices)"
@@ -29,7 +29,7 @@
                     "story"
                 ],
                 "summary": "Get story node by id",
-                "operationId": "4bb5edcfb5594668bb0a87c8cc063fcf",
+                "operationId": "getStoryNode",
                 "parameters": [
                     {
                         "name": "id",
@@ -57,7 +57,7 @@
                     "story"
                 ],
                 "summary": "Get next story node by choice",
-                "operationId": "d20506b521101b55dd27d62e5c046ccb",
+                "operationId": "getNextStoryNode",
                 "requestBody": {
                     "required": true,
                     "content": {
